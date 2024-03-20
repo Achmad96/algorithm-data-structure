@@ -67,7 +67,7 @@ void insertAfter(Node** head, int checked, int new_data)
 void showAllData(Node* head) {
     Node* temp = head;
     while (temp != NULL) {
-        cout << temp->data << endl;
+        cout << temp->data << " ";
         temp = temp->next;
     }
 }
@@ -153,12 +153,20 @@ int main ()
     deleteLast(&head);
     // 5 10 3
     insertLast(&head, 7);
+    // 5 10 3 7
     insertLast(&head, 7);
     // 5 10 3 7 7
     deleteFirst(&head);
-    // output: 10 3 7 7
+    // 10 3 7 7
     deleteAfter(&head, 3);
-    // output: 10 3 7
+    // 10 3 7
+    insertLast(&head, 8);
+    // 10 3 7 8
+    insertLast(&head, 9);
+    // 10 3 7 8 9
+    deleteAfter(&head, 7);
+    // 10 3 7 9
+
     showAllData(head);
     return 0;
 }
