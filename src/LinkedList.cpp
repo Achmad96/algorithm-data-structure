@@ -9,30 +9,29 @@ struct Node
 
 void insertLast(Node** head, int new_data)
 {
-    Node* new_node = new Node();
     Node* last = *head;
-    
+    Node* new_node = new Node;
+
     new_node->next = NULL;
     new_node->data = new_data;
-    
-    if (*head == NULL) 
-    {
+
+    if (*head == NULL) {
         *head = new_node;
         return;
     }
-    
+
     while (last->next != NULL) {
         last = last->next;
     }
-    
+
     last->next = new_node;
 }
 
 void insertFirst(Node** head, int new_data) 
 {
-    Node* new_node = new Node();
+    Node* new_node = new Node;
 
-    new_node->next = *head; 
+    new_node->next = *head;
 
     new_node->data = new_data;
 
@@ -43,24 +42,19 @@ void insertAfter(Node** head, int checked, int new_data)
 {
     if (head == NULL)
     {
-        cout << "The list of the data is null" << endl;
+        cout << "The list is empty" << endl;
         return;
     }
-
-    Node* p = *head;
+    Node* last = *head;
     Node* new_node = new Node;
-
-    while (p != NULL) {
-        if (p->data == checked) {
+    while (last != NULL){
+        if (last->data == checked) {
             new_node->data = new_data;
-            new_node->next = p->next;
-
-            p->next = new_node;
-            return;
+            new_node->next = last->next;
+            last->next = new_node;
         }
-        p = p -> next;
+        last = last->next;
     }
-    cout << "The data " << checked << " was not found in the list" << endl;
 }
 
 void showAllData(Node* head) {
@@ -79,23 +73,17 @@ void deleteLast(Node** head)
         cout << "The list is empty" << endl;
         return;
     }
-
-    // *If there is only one node
-    if ((*head)->next == NULL)
-    {
+    if ((*head)->next == NULL){
         delete *head;
         *head = NULL;
         return;
     }
-
-    // *else if there are more than one node
-    Node* temp = *head;
-    while (temp->next->next != NULL)
-    {
-        temp = temp->next;
+    Node* last = *head;
+    while (last->next->next != NULL) {
+        last = last->next;
     }
-    delete temp->next;
-    temp->next = NULL;
+    delete last->next;
+    last->next = NULL;
 }
 
 void deleteFirst(Node** head) {
@@ -104,13 +92,15 @@ void deleteFirst(Node** head) {
         cout << "The list is empty" << endl;
         return;
     }
-    Node* last = *head;
-    if (last->next == NULL) {
+    if ((*head)->next == NULL){
         delete *head;
         *head = NULL;
         return;
     }
-    *head = last->next;
+    Node* tmp = *head;
+    *head = tmp->next;
+    delete tmp;
+    tmp = NULL;
 }
 
 void deleteAfter(Node** head, int checked) 
@@ -127,21 +117,25 @@ void deleteAfter(Node** head, int checked)
         return;
     }
 
-    Node* current = *head;
-    while (current != NULL) {
-        if (current->data == checked){
-            Node* node_to_delete = current->next;
-            current->next = node_to_delete->next;
-            delete node_to_delete;
+    Node* last = *head;
+    Node* tmp = new Node;
+    while (last != NULL) 
+    {
+        if (last->data == checked)
+        {
+            tmp = last->next;
+            last->next = tmp->next;
+            delete tmp;
+            tmp = NULL;
         }
-        current = current->next;
+        last = last->next;
     }
 }
 
 int main () 
 {
     Node *head = NULL;
-    insertLast(&head, 5);
+    insertFirst(&head, 5);
     // 5
     insertLast(&head, 10);
     // 5 10
