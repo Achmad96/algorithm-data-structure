@@ -80,7 +80,7 @@ void deleteLast(Node** head)
         return;
     }
 
-    // If there is only one node
+    // *If there is only one node
     if ((*head)->next == NULL)
     {
         delete *head;
@@ -88,7 +88,7 @@ void deleteLast(Node** head)
         return;
     }
 
-    // else if there are more than one node
+    // *else if there are more than one node
     Node* temp = *head;
     while (temp->next->next != NULL)
     {
