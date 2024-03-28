@@ -6,9 +6,9 @@ using namespace std;
 struct QNode {
     string data;
     QNode* next;
-    QNode(string d)
+    QNode(string name)
     {
-        data = d;
+        data = name;
         next = NULL;
     }
 };
@@ -18,8 +18,9 @@ struct Queue{
     Queue(){
         front = rear = NULL;
     }
-    void enque(string x) {
-        QNode *tmp = new QNode(x);
+
+    void enque(string name) {
+        QNode *tmp = new QNode(name);
         if (rear == NULL){
             front = rear = tmp;
             return;
@@ -34,20 +35,23 @@ struct Queue{
             return;
         }
 
-        QNode* tmp = front;
+		QNode* tmp = front;
         front = front->next;
-        if (front == NULL) {
-            rear = NULL;
-        }
 
-        delete tmp;
+		if (front == NULL){
+			rear = NULL;
+		}
+
+		delete tmp;
     }
 
     void printQueue() {
-        while(rear != NULL){
-            cout << rear->data << " " << endl;
-            rear = rear->next;
-        }
+		QNode* tmp =  front;
+		while(tmp != NULL){
+				cout << tmp->data << " "; 
+				tmp = tmp->next;
+		}
+		cout << "\n" << endl;
     }
 };
 
@@ -56,9 +60,12 @@ int main() {
     q.enque("Joko");
     // Joko
     q.enque("Budi");
-    // Budi Joko 
+	// Joko Budi
+	q.enque("Edi");
+	q.printQueue();
+	// Joko Budi Edi
     q.deque();
-    // Budi
+	// Budi Edi
     q.printQueue();
     return 0;
 }
