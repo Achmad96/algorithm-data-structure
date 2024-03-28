@@ -10,7 +10,7 @@ public class MumetSelalu {
     public static void main(String[] args) {
         final int n = 7;
         final int[][] arrs = new int[n][n];
-        
+
         int number = 1;
         
         int startRow = 0;
