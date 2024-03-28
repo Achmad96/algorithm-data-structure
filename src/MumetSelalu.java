@@ -1,20 +1,15 @@
 package src;
 
-import java.util.Scanner;
 /**
  * @author Achmad raihan
  */
 public class MumetSelalu {
-
     /**
      * @param args
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Panjang array: ");
-
-        int n = input.nextInt();
-        int[][] arrs = new int[n][n];
+        final int n = 7;
+        final int[][] arrs = new int[n][n];
         
         int number = 1;
         
@@ -24,7 +19,6 @@ public class MumetSelalu {
         int startCol = 0;
         int endCol = n - 1;
         
-        // TODO: Make the loop to can receive dynamic n
         // bottom to top
         for(int i = endRow; i >= startRow; i --) {
             arrs[i][startRow] = number;
@@ -72,7 +66,7 @@ public class MumetSelalu {
             arrs[i][startCol] = number;
             number++;
         }
-        startCol++;           
+        startCol++;
         
         // startCol += 1 then left to right
         for(int i  = startCol; i <= endCol; i++) {
@@ -87,20 +81,35 @@ public class MumetSelalu {
             number++;
         }
         endCol--;
-        startCol++;
         
         // startCol += 1 then bottom to top
         for (int i = endRow; i >= startRow;i--) {
-            arrs[i][endCol] = number;
+            arrs[i][startCol] = number;
             number++;
         }
+        endRow -= 3;
+        printArray(arrs);
+
+        System.out.printf(
+            """
+            %n
+            === RESULT ===
+            startRow: %d
+            endRow: %d
+
+            startCol: %d
+            endCol: %d
+            ==============
+            """,startRow, endRow, startCol, endCol
+                    );
+    }
+
+    public static void printArray(int[][] arrs) {
         for (int[] arr : arrs) {
             for (int j = 0; j < arr.length; j++) {
                 System.out.printf("%3d", arr[j]);
-            }
+        }
             System.out.println();
         }
-
-        input.close();
     }
 }
