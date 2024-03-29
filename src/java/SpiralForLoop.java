@@ -20,7 +20,7 @@ public class SpiralForLoop {
         while (number <= n * n) {
             // bot to top
             for (int i = endRow; i >= startRow; i--) {
-                arrs[i][startCol]= number;
+                arrs[i][startCol] = number;
                 number++;
             }
             startCol++;
@@ -34,7 +34,7 @@ public class SpiralForLoop {
 
             // top to bottom
             for (int i = startRow; i <= endCol; i++) {
-                arrs[i][endCol]=number;
+                arrs[i][endCol] = number;
                 number++;
             }
             endCol--;
@@ -46,7 +46,6 @@ public class SpiralForLoop {
             }
             endRow--;
         }
-        
         for (int i = 0; i < arrs.length; i++) {
             for (int j = 0; j < arrs[i].length; j++) {
                 System.out.printf("%3d", arrs[i][j]);
