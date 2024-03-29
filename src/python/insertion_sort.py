@@ -7,3 +7,6 @@ def insertion_sort(arr: list[int]) -> list[int]:
             j = j - 1
         arr[j + 1] = key
     return arr
+
+
+print(insertion_sort([10, 3, 6, 2, 1, 5]))
