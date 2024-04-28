@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "cstdlib": "cpp"
+  },
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ $fileName -o \"$workspaceRoot/.output/$fileNameWithoutExt\" && \"$workspaceRoot/.output/$fileNameWithoutExt\""
+  }
+}
