@@ -1,14 +1,12 @@
 #include<iostream>
 using namespace std;
 
-struct Node
-{
+struct Node{
     int data;
     Node* next;
 };
 
-void insertLast(Node** head, int new_data)
-{
+void insertLast(Node** head, int new_data){
     Node* last = *head;
     Node* new_node = new Node;
 
@@ -27,21 +25,15 @@ void insertLast(Node** head, int new_data)
     last->next = new_node;
 }
 
-void insertFirst(Node** head, int new_data) 
-{
+void insertFirst(Node** head, int new_data) {
     Node* new_node = new Node;
-
     new_node->next = *head;
-
     new_node->data = new_data;
-
     *head = new_node;
 }
 
-void insertAfter(Node** head, int checked, int new_data)
-{
-    if (head == NULL)
-    {
+void insertAfter(Node** head, int checked, int new_data){
+    if (head == NULL){
         cout << "The list is empty" << endl;
         return;
     }
@@ -66,10 +58,8 @@ void showAllData(Node* head) {
 }
 
 
-void deleteLast(Node** head)
-{
-    if (*head == NULL)
-    {
+void deleteLast(Node** head){
+    if (*head == NULL){
         cout << "The list is empty" << endl;
         return;
     }
@@ -103,26 +93,21 @@ void deleteFirst(Node** head) {
     tmp = NULL;
 }
 
-void deleteAfter(Node** head, int checked) 
-{
-    if (*head == NULL)
-    {
+void deleteAfter(Node** head, int checked) {
+    if (*head == NULL){
         cout << "The list is empty" << endl;
         return;
     }
 
-    if ((*head)->next == NULL)
-    {
+    if ((*head)->next == NULL){
         cout << "The list only has one element" << endl;
         return;
     }
 
     Node* last = *head;
     Node* tmp = new Node;
-    while (last != NULL) 
-    {
-        if (last->data == checked)
-        {
+    while (last != NULL) {
+        if (last->data == checked){
             tmp = last->next;
             last->next = tmp->next;
             delete tmp;
@@ -132,8 +117,7 @@ void deleteAfter(Node** head, int checked)
     }
 }
 
-int main () 
-{
+int main () {
     Node *head = NULL;
     insertFirst(&head, 5);
     // 5

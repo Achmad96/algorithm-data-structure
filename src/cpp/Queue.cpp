@@ -3,24 +3,23 @@
 
 using namespace std;
 
-struct QNode {
+struct Node {
     string data;
-    QNode* next;
-    QNode(string name)
-    {
+    Node* next;
+    Node(string name){
         data = name;
         next = NULL;
     }
 };
 
 struct Queue{
-    QNode *front, *rear;
+    Node *front, *rear;
     Queue(){
         front = rear = NULL;
     }
 
-    void enque(string name) {
-        QNode *tmp = new QNode(name);
+    void insertFirst(string name) {
+        Node *tmp = new Node(name);
         if (rear == NULL){
             front = rear = tmp;
             return;
@@ -29,13 +28,13 @@ struct Queue{
         rear = tmp;
     }
 
-    void deque() {
+    void removeFirst() {
         if (front == NULL) {
             cout << "The list is empty" << endl;
             return;
         }
 
-		QNode* tmp = front;
+		Node* tmp = front;
         front = front->next;
 
 		if (front == NULL){
@@ -46,10 +45,10 @@ struct Queue{
     }
 
     void printQueue() {
-		QNode* tmp =  front;
+		Node* tmp =  front;
 		while(tmp != NULL){
-				cout << tmp->data << " "; 
-				tmp = tmp->next;
+            cout << tmp->data << " "; 
+            tmp = tmp->next;
 		}
 		cout << "\n" << endl;
     }
@@ -57,14 +56,14 @@ struct Queue{
 
 int main() {
     Queue q;
-    q.enque("Joko");
+    q.insertFirst("Joko");
     // Joko
-    q.enque("Budi");
+    q.insertFirst("Budi");
 	// Joko Budi
-	q.enque("Edi");
+	q.insertFirst("Edi");
 	q.printQueue();
 	// Joko Budi Edi
-    q.deque();
+    q.removeFirst();
 	// Budi Edi
     q.printQueue();
     return 0;
