@@ -17,33 +17,33 @@ struct BinaryTree {
   Node* root;
 
 private:
-  void insertRecursive(Node* &node, int data) {
-    if (node == nullptr) {
-      node = new Node(data);
+  void insertTranversal(Node* &root, int value) {
+    if (root == nullptr) {
+      root = new Node(value);
       return;
     }
-    if (data < node->data) insertRecursive(node->left, data);
-    else insertRecursive(node->right, data);
+    if (value < root->data) insertTranversal(root->left, value);
+    else insertTranversal(root->right, value);
   }
 
-  void printPreOrderRecursive(Node* node) {
+  void printPreOrderTranversal(Node* &node) {
     if (node == nullptr) return;
     cout << node->data << " ";
-    printPreOrderRecursive(node->left);
-    printPreOrderRecursive(node->right);
+    printPreOrderTranversal(node->left);
+    printPreOrderTranversal(node->right);
   }
 
-  void printInOrderRecursive(Node* node) {
+  void printInOrderTranversal(Node* &node) {
     if (node == nullptr) return;  
-    printInOrderRecursive(node->left);
+    printInOrderTranversal(node->left);
     cout << node->data << " ";
-    printInOrderRecursive(node->right);
+    printInOrderTranversal(node->right);
   }
 
-  void printPostOrderRecursive(Node* node) {
+  void printPostOrderTranversal(Node* &node) {
     if (node == nullptr) return;
-    printPostOrderRecursive(node->left);
-    printPostOrderRecursive(node->right);
+    printPostOrderTranversal(node->left);
+    printPostOrderTranversal(node->right);
     cout << node->data << " ";
   }
 
@@ -53,36 +53,34 @@ public:
   }
 
   void insert(int data) {
-    insertRecursive(this->root, data);
+    insertTranversal(this->root, data);
   }
 
   void printPreOrder() {
-    printPreOrderRecursive(this->root);
+    printPreOrderTranversal(this->root);
     cout << endl;
   }
 
   void printInOrder() {
-    printInOrderRecursive(this->root);
+    printInOrderTranversal(this->root);
     cout << endl;
   }
 
+
   void printPostOrder() {
-    printPostOrderRecursive(this->root);
+    printPostOrderTranversal(this->root);
     cout << endl;
   }
 };
 
 int main () {
   BinaryTree tree;
-  tree.insert(10);
-  tree.insert(20);
-  tree.insert(30);
+  tree.insert(10); // root
+  tree.insert(5); // node left
+  tree.insert(20); // node right
 
-  tree.printPreOrder();
-  // 10 20 30
-  tree.printInOrder();
-  // 10 20 30
-  tree.printPostOrder();
-  // 30 20 10
+  tree.printPreOrder(); // 10 5 20
+  tree.printInOrder(); // 5 10 20
+  tree.printPostOrder(); // 5 20 10
   return 0;
 }
